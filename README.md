@@ -62,9 +62,6 @@ if(isset($_POST['submit'])){
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div>        
-    <img src="img/header.jpeg" width="100%">
-</div>
   <div class="container" style="padding-top: 60px;"> 
   <div class="row">
     <div class="col-md-3"></div>
