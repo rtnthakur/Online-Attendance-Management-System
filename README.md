@@ -1,101 +1,38 @@
-<?php
-include 'db.php';
-if (!isset($_SESSION)) {
-  session_start();
-}
-if(isset($_POST['submit'])){
+# Online Attendance Management System
 
-    $uname = mysqli_real_escape_string($con,$_POST['username']);
-    $password = mysqli_real_escape_string($con,$_POST['password']);
+The **Online Attendance Management System** is a web-based application designed to simplify and automate the process of tracking attendance for students in colleges or employees in small offices. This project is built using **HTML**, **CSS**, **JavaScript**, and **PHP** with a **MySQL** database, making it a comprehensive solution for managing attendance records efficiently.
 
-    $psw = md5($password);
+## Features
 
-    if (!empty($uname) OR !empty($psw)){
+1. **User-Friendly Interface**: The system provides an intuitive and easy-to-navigate interface for both administrators and users.
+2. **Role-Based Access**:
+   - **Admin**: Can manage students/employees, view attendance reports, and generate summaries.
+   - **Students/Employees**: Can mark their attendance and view their attendance history.
+3. **Real-Time Attendance Tracking**: Allows users to mark their attendance in real-time.
+4. **Attendance Reports**: Generates detailed reports for individual students/employees or groups.
+5. **Database Integration**: Uses MySQL to store and manage attendance records securely.
+6. **Responsive Design**: The system is responsive and works seamlessly on desktops, tablets, and mobile devices.
 
-        $sql = "SELECT email, name, mobile, password FROM useradmin WHERE (email = '$uname' OR mobile = '$uname') AND password = '$psw'";
+## Technologies Used
 
-        $result = mysqli_query($con,$sql);
-        
-        $count = mysqli_num_rows($result);
+- **Frontend**: HTML, CSS, JavaScript
+- **Backend**: PHP
+- **Database**: MySQL
+- **Version Control**: Git (Hosted on GitHub)
 
-        if ($count > 0) {
-          $row = mysqli_fetch_assoc($result);
+## How It Works
 
-            $_SESSION['user_id'] = $row['email'];
-            $_SESSION['username'] = $row['name'];
-            $_SESSION['last_activity'] = time();
+1. **Admin Login**: The admin can log in to the system to manage users, view attendance records, and generate reports.
+2. **User Login**: Students or employees can log in to mark their attendance and view their attendance history.
+3. **Attendance Marking**: Users can mark their attendance for the day, which is then stored in the database.
+4. **Report Generation**: Admins can generate attendance reports for specific periods or individuals.
 
-            header("location: index.php");                             
-          }
-       else{
-          echo "<script>
-            alert('Invalid Credentials. Try again');
-            window.history.back();
-          </script>";
-        }
-    }else{
-          echo "<script>
-            alert('Email and password must be filled.');
-            window.history.back();
-          </script>";
-        }
+## Installation and Setup
 
-}
-?>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Login</title>
-  <link rel="icon" href="img/iari-logo.png" type="image/x-icon">
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-  <div class="container" style="padding-top: 60px;"> 
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">   
-    <form method="post">      
-      <div class="card border border-success">
-        <div class="card-header"><h2 class="text text-success">Login to Dashboard</h2></div>
-          <hr class="border border-success">
-           <div class="card-body">
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-12">
-                    <label class="text text-success">E-mail or Mobile</strong></label>
-                    <input type="text" name="username" class="form-control"  required="required">
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="col-md-12">
-                    <label class="text text-success">Password</label>
-                    <input type="password" name="password" class="form-control" required="required">                     
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="col-md-12">
-                    <input type="submit" name="submit" class="btn btn-success form-control" value="Login">
-                  </div>
-               </div>
-             </div>
-            </div>
-    </form> 
- </div>
-<div class="col-md-3"></div>
-</div>
-</div>
-</body>
-</html>
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/rtnthakur/Online-Attendance-Management-System.git
+2. Import the MySQL database from the database folder.
+3. Configure the config.php file with your database credentials.
+4. Deploy the project on a local or remote server (e.g., XAMPP, WAMP, or LAMP).
+5. Access the system via a web browser.
